@@ -11,139 +11,113 @@ export interface Database {
         Tables: {
             themes: {
                 Row: {
-                    id: string
+                    id: number
                     name: string
+                    keywordss: string
                     created_at: string
                 }
                 Insert: {
-                    id?: string
+                    id?: number
                     name: string
+                    keywordss: string
                     created_at?: string
                 }
                 Update: {
-                    id?: string
+                    id?: number
                     name?: string
+                    keywordss?: string
                     created_at?: string
                 }
             }
             ideas: {
                 Row: {
-                    id: string
-                    owner_id: string
+                    id: number
                     name: string
                     pitch: string
                     key_pain_insight: string
                     score: number
+                    theme_id: number
                     created_at: string
                 }
                 Insert: {
-                    id?: string
-                    owner_id: string
+                    id?: number
                     name: string
                     pitch: string
                     key_pain_insight: string
                     score: number
+                    theme_id: number
                     created_at?: string
                 }
                 Update: {
-                    id?: string
-                    owner_id?: string
+                    id?: number
                     name?: string
                     pitch?: string
                     key_pain_insight?: string
                     score?: number
+                    theme_id?: number
                     created_at?: string
                 }
             }
             idea_sources: {
                 Row: {
-                    id: string
-                    owner_id: string
+                    id: number
                     source_type: string
-                    source_identifier: string
-                    source_url: string
-                    extracted_insight: string | null
-                    idea_id: string | null
+                    extracted_insight: string
+                    theme_id: number
+                    created_at: string
                 }
                 Insert: {
-                    id?: string
-                    owner_id: string
+                    id?: number
                     source_type: string
-                    source_identifier: string
-                    source_url: string
-                    extracted_insight?: string | null
-                    idea_id?: string | null
+                    extracted_insight: string
+                    theme_id: number
+                    created_at?: string
                 }
                 Update: {
-                    id?: string
-                    owner_id?: string
+                    id?: number
                     source_type?: string
-                    source_identifier?: string
-                    source_url?: string
-                    extracted_insight?: string | null
-                    idea_id?: string | null
+                    extracted_insight?: string
+                    theme_id?: number
+                    created_at?: string
                 }
             }
-            idea_themes: {
+            subscriptions: {
                 Row: {
-                    idea_id: string
-                    theme_id: string
+                    id: number
                     owner_id: string
+                    email: string
                     created_at: string
                 }
                 Insert: {
-                    idea_id: string
-                    theme_id: string
+                    id?: number
                     owner_id: string
+                    email: string
                     created_at?: string
                 }
                 Update: {
-                    idea_id?: string
-                    theme_id?: string
+                    id?: number
                     owner_id?: string
-                    created_at?: string
-                }
-            }
-            email_subscriptions: {
-                Row: {
-                    id: string
-                    owner_id: string | null
-                    email: string
-                    is_active: boolean
-                    created_at: string
-                }
-                Insert: {
-                    id?: string
-                    owner_id?: string | null
-                    email: string
-                    is_active?: boolean
-                    created_at?: string
-                }
-                Update: {
-                    id?: string
-                    owner_id?: string | null
                     email?: string
-                    is_active?: boolean
                     created_at?: string
                 }
             }
             subscription_themes: {
                 Row: {
-                    subscription_id: string
-                    theme_id: string
-                    owner_id: string
+                    id: number
+                    subscription_id: number
+                    theme_id: number
                     created_at: string
                 }
                 Insert: {
-                    subscription_id: string
-                    theme_id: string
-                    owner_id: string
+                    id?: number
+                    subscription_id: number
+                    theme_id: number
                     created_at?: string
                 }
                 Update: {
-                    subscription_id?: string
-                    theme_id?: string
-                    owner_id?: string
+                    id?: number
+                    subscription_id?: number
+                    theme_id?: number
                     created_at?: string
                 }
             }
