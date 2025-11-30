@@ -19,9 +19,7 @@ export function Navbar() {
                         </Button>
                     </SignedOut>
                     <SignedIn>
-                        <Button variant="ghost" asChild>
-                            <Link href="/ideas">Ideas</Link>
-                        </Button>
+                        {/* Ideas link removed as it is the main page */}
                         <UserButton />
                     </SignedIn>
                 </div>
