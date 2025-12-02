@@ -185,7 +185,7 @@ export class EmailOrchestrator {
         results: EmailOrchestratorResults
     ): Promise<void> {
         const ideaGroups = this.createIdeaGroups(ideas);
-        const emailHtml = this.generateEmailHtml(subscription.email, ideaGroups);
+        const emailHtml = this.generateEmailHtml(subscription, ideaGroups);
         const subject = this.createEmailSubject(ideas.length);
 
         const result = await this.emailSender.sendEmail({
@@ -203,9 +203,10 @@ export class EmailOrchestrator {
         }
     }
 
-    private generateEmailHtml(subscriberEmail: string, ideaGroups: IdeaGroup[]): string {
+    private generateEmailHtml(subscription: Subscription, ideaGroups: IdeaGroup[]): string {
         return generateIdeaDigestEmail({
-            subscriberEmail,
+            subscriberEmail: subscription.email,
+            subscriptionId: subscription.id,
             ideaGroups,
             webAppUrl: this.webAppUrl,
         });

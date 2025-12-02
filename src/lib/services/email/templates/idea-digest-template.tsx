@@ -11,6 +11,7 @@ interface IdeaGroup {
 
 interface IdeaDigestTemplateProps {
     subscriberEmail: string;
+    subscriptionId: number;
     ideaGroups: IdeaGroup[];
     webAppUrl: string;
 }
@@ -20,7 +21,8 @@ interface IdeaDigestTemplateProps {
  * Designed to render well across all email clients
  */
 export function generateIdeaDigestEmail(props: IdeaDigestTemplateProps): string {
-    const { subscriberEmail, ideaGroups, webAppUrl } = props;
+    const { subscriberEmail, subscriptionId, ideaGroups, webAppUrl } = props;
+    const unsubscribeUrl = `${webAppUrl}api/unsubscribe?id=${subscriptionId}`;
 
     return `
 <!DOCTYPE html>
@@ -85,6 +87,9 @@ export function generateIdeaDigestEmail(props: IdeaDigestTemplateProps): string 
                         <td style="padding: 30px 40px; background-color: #f9fafb; border-radius: 0 0 8px 8px; border-top: 1px solid #e5e7eb;">
                             <p style="margin: 0 0 10px; color: #6b7280; font-size: 13px; line-height: 1.6; text-align: center;">
                                 You're receiving this email at <strong>${subscriberEmail}</strong> because you subscribed to daily idea digests.
+                            </p>
+                            <p style="margin: 0 0 10px; color: #6b7280; font-size: 13px; text-align: center;">
+                                <a href="${unsubscribeUrl}" style="color: #6b7280; text-decoration: underline;">Unsubscribe from these emails</a>
                             </p>
                             <p style="margin: 0; color: #9ca3af; font-size: 12px; text-align: center;">
                                 © ${new Date().getFullYear()} Idea Radar. All rights reserved.
