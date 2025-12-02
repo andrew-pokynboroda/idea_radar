@@ -2,6 +2,7 @@ import { createAdminClient } from '@/lib/clients/supabase';
 import { Database } from '@/types/supabase';
 import { EmailSender } from './email-sender';
 import { generateIdeaDigestEmail } from './templates/idea-digest-template';
+import { captureError } from '@/lib/utils';
 
 type Idea = Database['public']['Tables']['ideas']['Row'] & {
     theme: Database['public']['Tables']['themes']['Row'];
@@ -24,25 +25,17 @@ interface EmailOrchestratorResults {
     errors: string[];
 }
 
-/**
- * Orchestrator for sending daily idea digest emails
- * Implements efficient querying to prevent N+1 problems
- */
 export class EmailOrchestrator {
     private supabaseClient = createAdminClient();
     private webAppUrl: string;
 
     constructor(
         private emailSender: EmailSender,
-        webAppUrl: string = 'https://idea-radar-lyart.vercel.app/'
+        webAppUrl: string
     ) {
         this.webAppUrl = webAppUrl;
     }
 
-    /**
-     * Execute the email sending pipeline
-     * @returns Results summary
-     */
     async execute(): Promise<EmailOrchestratorResults> {
         console.log('[EmailOrchestrator] Starting daily digest email job...');
 
@@ -53,7 +46,6 @@ export class EmailOrchestrator {
         };
 
         try {
-            // Step 1: Fetch ideas created today (single query)
             const todayIdeas = await this.fetchTodayIdeas();
             console.log(`[EmailOrchestrator] Found ${todayIdeas.length} ideas created today`);
 
@@ -62,7 +54,6 @@ export class EmailOrchestrator {
                 return results;
             }
 
-            // Step 2: Fetch all subscriptions with their themes (single query with join)
             const subscriptions = await this.fetchSubscriptionsWithThemes();
             console.log(`[EmailOrchestrator] Found ${subscriptions.length} active subscriptions`);
 
@@ -71,49 +62,48 @@ export class EmailOrchestrator {
                 return results;
             }
 
-            // Step 3: Group ideas by theme_id for efficient lookup
             const ideasByTheme = this.groupIdeasByTheme(todayIdeas);
-
-            // Step 4: Process each subscription
-            for (const subscription of subscriptions) {
-                try {
-                    await this.processSubscription(subscription, ideasByTheme, results);
-                } catch (error) {
-                    console.error(
-                        `[EmailOrchestrator] Error processing subscription ${subscription.id}:`,
-                        error
-                    );
-                    results.errors.push(
-                        `Subscription ${subscription.email}: ${(error as Error).message}`
-                    );
-                }
-            }
+            await this.processAllSubscriptions(subscriptions, ideasByTheme, results);
 
             console.log('[EmailOrchestrator] Email job complete:', results);
             return results;
         } catch (error) {
-            console.error('[EmailOrchestrator] Fatal error in email job:', error);
+            captureError(error, { context: 'EmailOrchestrator.execute' });
             results.errors.push(`Fatal error: ${(error as Error).message}`);
             return results;
         }
     }
 
-    /**
-     * Fetch all ideas created today with their themes
-     * Single query with join to prevent N+1
-     */
+    private async processAllSubscriptions(
+        subscriptions: Subscription[],
+        ideasByTheme: Map<number, Idea[]>,
+        results: EmailOrchestratorResults
+    ): Promise<void> {
+        for (const subscription of subscriptions) {
+            try {
+                await this.processSubscription(subscription, ideasByTheme, results);
+            } catch (error) {
+                captureError(error, {
+                    context: 'processSubscription',
+                    subscriptionId: subscription.id
+                });
+                results.errors.push(
+                    `Subscription ${subscription.email}: ${(error as Error).message}`
+                );
+            }
+        }
+    }
+
     private async fetchTodayIdeas(): Promise<Idea[]> {
         const startOfToday = new Date();
         startOfToday.setHours(0, 0, 0, 0);
 
         const { data, error } = await this.supabaseClient
             .from('ideas')
-            .select(
-                `
+            .select(`
                 *,
                 theme:themes(*)
-            `
-            )
+            `)
             .gte('created_at', startOfToday.toISOString())
             .order('score', { ascending: false });
 
@@ -124,10 +114,6 @@ export class EmailOrchestrator {
         return (data || []) as Idea[];
     }
 
-    /**
-     * Fetch all subscriptions with their theme preferences
-     * Single query with join to prevent N+1
-     */
     private async fetchSubscriptionsWithThemes(): Promise<Subscription[]> {
         const { data, error } = await this.supabaseClient
             .from('subscriptions')
@@ -146,9 +132,6 @@ export class EmailOrchestrator {
         return (data || []) as Subscription[];
     }
 
-    /**
-     * Group ideas by theme_id for efficient lookup
-     */
     private groupIdeasByTheme(ideas: Idea[]): Map<number, Idea[]> {
         const grouped = new Map<number, Idea[]>();
 
@@ -163,54 +146,51 @@ export class EmailOrchestrator {
         return grouped;
     }
 
-    /**
-     * Process a single subscription
-     */
     private async processSubscription(
         subscription: Subscription,
         ideasByTheme: Map<number, Idea[]>,
         results: EmailOrchestratorResults
     ): Promise<void> {
-        // Get theme IDs this subscriber is interested in
         const subscribedThemeIds = subscription.subscription_themes.map(st => st.theme_id);
 
         if (subscribedThemeIds.length === 0) {
-            console.log(
-                `[EmailOrchestrator] Subscription ${subscription.id} has no theme preferences, skipping`
-            );
+            console.log(`[EmailOrchestrator] Subscription ${subscription.id} has no theme preferences, skipping`);
             results.emails_skipped++;
             return;
         }
 
-        // Filter ideas matching subscriber's themes
+        const relevantIdeas = this.getRelevantIdeas(subscribedThemeIds, ideasByTheme);
+
+        if (relevantIdeas.length === 0) {
+            console.log(`[EmailOrchestrator] No relevant ideas for subscription ${subscription.email}, skipping`);
+            results.emails_skipped++;
+            return;
+        }
+
+        await this.sendDigestEmail(subscription, relevantIdeas, results);
+    }
+
+    private getRelevantIdeas(themeIds: number[], ideasByTheme: Map<number, Idea[]>): Idea[] {
         const relevantIdeas: Idea[] = [];
-        for (const themeId of subscribedThemeIds) {
+        for (const themeId of themeIds) {
             const ideas = ideasByTheme.get(themeId) || [];
             relevantIdeas.push(...ideas);
         }
+        return relevantIdeas;
+    }
 
-        if (relevantIdeas.length === 0) {
-            console.log(
-                `[EmailOrchestrator] No relevant ideas for subscription ${subscription.email}, skipping`
-            );
-            results.emails_skipped++;
-            return;
-        }
+    private async sendDigestEmail(
+        subscription: Subscription,
+        ideas: Idea[],
+        results: EmailOrchestratorResults
+    ): Promise<void> {
+        const ideaGroups = this.createIdeaGroups(ideas);
+        const emailHtml = this.generateEmailHtml(subscription.email, ideaGroups);
+        const subject = this.createEmailSubject(ideas.length);
 
-        // Group ideas by theme for email display
-        const ideaGroups = this.createIdeaGroups(relevantIdeas);
-
-        // Generate email HTML
-        const emailHtml = generateIdeaDigestEmail({
-            subscriberEmail: subscription.email,
-            ideaGroups,
-            webAppUrl: this.webAppUrl,
-        });
-
-        // Send email
         const result = await this.emailSender.sendEmail({
             to: subscription.email,
-            subject: `💡 Your Daily Idea Digest - ${relevantIdeas.length} New ${relevantIdeas.length === 1 ? 'Idea' : 'Ideas'}`,
+            subject,
             html: emailHtml,
         });
 
@@ -218,18 +198,24 @@ export class EmailOrchestrator {
             console.log(`[EmailOrchestrator] Email sent to ${subscription.email}`);
             results.emails_sent++;
         } else {
-            console.error(
-                `[EmailOrchestrator] Failed to send email to ${subscription.email}:`,
-                result.error
-            );
+            console.error(`[EmailOrchestrator] Failed to send email to ${subscription.email}:`, result.error);
             results.errors.push(`${subscription.email}: ${result.error}`);
         }
     }
 
-    /**
-     * Create idea groups organized by theme
-     * Ideas within each theme are already sorted by score (from query)
-     */
+    private generateEmailHtml(subscriberEmail: string, ideaGroups: IdeaGroup[]): string {
+        return generateIdeaDigestEmail({
+            subscriberEmail,
+            ideaGroups,
+            webAppUrl: this.webAppUrl,
+        });
+    }
+
+    private createEmailSubject(ideaCount: number): string {
+        const ideaWord = ideaCount === 1 ? 'Idea' : 'Ideas';
+        return `💡 Your Daily Idea Digest - ${ideaCount} New ${ideaWord}`;
+    }
+
     private createIdeaGroups(ideas: Idea[]): IdeaGroup[] {
         const groupMap = new Map<number, IdeaGroup>();
 
@@ -244,12 +230,11 @@ export class EmailOrchestrator {
             groupMap.get(themeId)!.ideas.push(idea);
         }
 
-        // Convert to array and sort groups by total score (sum of idea scores)
         const groups = Array.from(groupMap.values());
         groups.sort((a, b) => {
             const scoreA = a.ideas.reduce((sum, idea) => sum + idea.score, 0);
             const scoreB = b.ideas.reduce((sum, idea) => sum + idea.score, 0);
-            return scoreB - scoreA; // Descending order
+            return scoreB - scoreA;
         });
 
         return groups;

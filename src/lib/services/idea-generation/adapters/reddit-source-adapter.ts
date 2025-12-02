@@ -40,15 +40,7 @@ export class RedditSourceAdapter implements SourceAdapter {
     private async fetchSubredditPosts(keyword: string): Promise<SourceContent[]> {
         const content: SourceContent[] = [];
 
-        const posts = await this.client!.getSubredditPostsWithKeyword(keyword);
-
-        const cutoffDate = new Date();
-        cutoffDate.setDate(cutoffDate.getDate() - 30);
-        const cutoffTimestamp = cutoffDate.getTime() / 1000;
-
-        const recentPosts = posts.filter((post: any) =>
-            post.data.created_utc >= cutoffTimestamp
-        );
+        const recentPosts = await this.client!.getRecentPosts(keyword, 30);
 
         console.log(`[Reddit] Found ${recentPosts.length} recent posts with keyword ${keyword}`);
 

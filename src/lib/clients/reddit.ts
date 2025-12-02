@@ -65,6 +65,17 @@ export class MockRedditClient {
             },
         }));
     }
+
+    async getRecentPosts(keyword: string, days: number = 30): Promise<RedditPost[]> {
+        const posts = await this.getSubredditPostsWithKeyword(keyword);
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - days);
+        const cutoffTimestamp = cutoffDate.getTime() / 1000;
+
+        return posts.filter((post) =>
+            post.data.created_utc >= cutoffTimestamp
+        );
+    }
 }
 
 export async function createRedditClient(): Promise<MockRedditClient> {

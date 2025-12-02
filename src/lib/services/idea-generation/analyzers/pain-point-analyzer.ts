@@ -1,5 +1,5 @@
 import { PainPointAnalysis } from '../types';
-import { openaiClient } from '@/lib/clients/open_router';
+import { aiClient } from '@/lib/clients/open_router';
 
 const PAIN_POINT_PROMPT = `You are an expert at identifying business pain points in social media discussions.
 
@@ -33,20 +33,11 @@ const ACCEPTABLE_RELEVANCE_THRESHOLD = 7;
 export class PainPointAnalyzer {
     async analyze(content: string): Promise<PainPointAnalysis | null> {
         try {
-            const response = await openaiClient.chat.send({
-                model: "google/gemini-2.5-flash-lite",
-                messages: [
-                    {
-                        role: 'user',
-                        content: PAIN_POINT_PROMPT + '\n\n' + content,
-                    },
-                ],
-                responseFormat: { type: 'json_object' },
-                temperature: 0.0,
-            });
-
-            const responseContent = response.choices[0].message.content;
-            const result = JSON.parse((typeof responseContent === 'string' ? responseContent : '') || '{}') as PainPointAnalysis;
+            const result = await aiClient.generateJSON<PainPointAnalysis>(
+                PAIN_POINT_PROMPT + '\n\n' + content,
+                {},
+                "google/gemini-2.5-flash-lite"
+            );
 
             if (result.relevance && result.relevance > ACCEPTABLE_RELEVANCE_THRESHOLD) {
                 return result;

@@ -1,5 +1,5 @@
 import { IdeaResult, PainPointAnalysis, ExistingIdea } from '../types';
-import { openaiClient } from '@/lib/clients/open_router';
+import { aiClient } from '@/lib/clients/open_router';
 
 const IDEA_GENERATION_PROMPT = (themeName: string, existingIdeas: string[]) => `You are an expert SaaS product strategist and market analyst.
 
@@ -92,20 +92,7 @@ export class IdeaGenerator {
         };
 
         try {
-            const response = await openaiClient.chat.send({
-                model: 'google/gemini-2.5-flash', // More capable model for idea generation
-                messages: [
-                    {
-                        role: 'user',
-                        content: prompt + '\n\n' + JSON.stringify(contextData, null, 2),
-                    },
-                ],
-                responseFormat: { type: 'json_object' },
-                temperature: 0.7,
-            });
-
-            const content = response.choices[0].message.content;
-            const rawResult = JSON.parse((typeof content === 'string' ? content : '') || '{}');
+            const rawResult = await aiClient.generateJSON<any>(prompt, contextData);
 
             // Map target_idea_name to target_idea_id
             let target_idea_id: number | undefined = undefined;

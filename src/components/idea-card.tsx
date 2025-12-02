@@ -143,16 +143,14 @@ ${idea.sources?.map((s: any) => `- [${s.source_type}](${s.url})`).join('\n') || 
                                 <Badge variant="secondary">{idea.theme.name}</Badge>
                             )}
                         </DialogTitle>
-                        <DialogDescription>
-                            <div className="flex items-center gap-2 mt-2">
-                                <div className="flex items-center gap-1 text-green-600 font-bold">
-                                    <TrendingUp className="h-4 w-4" />
-                                    Score: {idea.score}
-                                </div>
-                                <span className="text-muted-foreground">•</span>
-                                <span>{formatDistanceToNow(new Date(idea.created_at), { addSuffix: true })}</span>
+                        <div className="flex items-center gap-2 mt-2">
+                            <div className="flex items-center gap-1 text-green-600 font-bold">
+                                <TrendingUp className="h-4 w-4" />
+                                Score: {idea.score}
                             </div>
-                        </DialogDescription>
+                            <span className="text-muted-foreground">•</span>
+                            <span>{formatDistanceToNow(new Date(idea.created_at), { addSuffix: true })}</span>
+                        </div>
                     </DialogHeader>
 
                     <div className="space-y-6 mt-4">
@@ -241,7 +239,7 @@ ${idea.sources?.map((s: any) => `- [${s.source_type}](${s.url})`).join('\n') || 
                         </div>
                     </div>
                 </DialogContent>
-            </Dialog>
+            </Dialog >
         </>
     );
 }
