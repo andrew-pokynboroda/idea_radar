@@ -12,8 +12,8 @@ export async function createSSRClient() {
     const token = await getToken({ template: 'supabase' })
 
     return createServerClient<Database>(
-        process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key',
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {
             global: {
                 headers: {
@@ -43,8 +43,8 @@ export async function createSSRClient() {
 // Admin Client for Background Jobs (uses Service Role Key)
 export function createAdminClient() {
     return createJsClient<Database>(
-        process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co',
-        process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-service-key'
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
     )
 }
 

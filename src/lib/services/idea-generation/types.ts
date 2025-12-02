@@ -5,7 +5,7 @@
 export interface Theme {
     id: number;
     name: string;
-    keywordss: string; // Comma-separated keywords/subreddit names
+    keywords: string; // Comma-separated keywords/subreddit names
 }
 
 export interface SourceContent {
@@ -32,6 +32,11 @@ export interface IdeaResult {
     painpoints: string[];
     insights: string[];
     competitors: string[];
+    mvp: {
+        scope: string;
+        components: string[];
+        estimated_time: string;
+    };
 }
 
 export interface GenerationResults {

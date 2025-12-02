@@ -3,30 +3,55 @@ import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Filter } from "lucide-react";
+import { Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { getIdeas, getThemes } from "@/lib/services/ideas";
 import { getUserSubscription } from "@/app/actions/subscriptions";
 import { IdeaCard } from "@/components/idea-card";
 import { ThemeFilter } from "@/components/theme-filter";
 import { SubscriptionManager } from "@/components/subscription-manager";
+import Link from "next/link";
 
 interface PageProps {
-    searchParams: Promise<{ themes?: string }>;
+    searchParams: Promise<{ themes?: string; page?: string }>;
 }
 
 export const dynamic = "force-dynamic";
+
+const IDEAS_PER_PAGE = 5;
 
 export default async function IdeasPage({ searchParams }: PageProps) {
     const params = await searchParams;
     const selectedThemeIds = params.themes
         ? params.themes.split(',').map(Number)
         : [];
+    const requestedPage = params.page ? parseInt(params.page) : 1;
 
-    const [ideas, themes, subscription] = await Promise.all([
-        getIdeas(selectedThemeIds),
+    const [{ ideas, total }, themes, subscription] = await Promise.all([
+        getIdeas(selectedThemeIds, 'score', requestedPage, IDEAS_PER_PAGE),
         getThemes(),
         getUserSubscription()
     ]);
+
+    const totalPages = Math.max(1, Math.ceil(total / IDEAS_PER_PAGE));
+
+    // Ensure current page is within valid range
+    const currentPage = Math.max(1, Math.min(requestedPage, totalPages));
+
+    // Build query params for pagination links
+    const buildPageUrl = (page: number) => {
+        const queryParams = new URLSearchParams();
+        if (params.themes) {
+            queryParams.set('themes', params.themes);
+        }
+        if (page > 1) {
+            queryParams.set('page', page.toString());
+        }
+        return `/ideas${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+    };
+
+    // If requested page is out of bounds and we have ideas, we need to handle it
+    // by showing the clamped page (this prevents errors but shows valid data)
+    const isOutOfBounds = requestedPage !== currentPage && total > 0;
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -52,6 +77,16 @@ export default async function IdeasPage({ searchParams }: PageProps) {
                                 <h1 className="text-3xl font-bold">Fresh Ideas</h1>
                             </div>
 
+                            {isOutOfBounds && (
+                                <Card className="border-yellow-500/50 bg-yellow-50 dark:bg-yellow-950/20">
+                                    <CardContent className="py-4">
+                                        <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                                            Page {requestedPage} doesn't exist. Showing page {currentPage} instead.
+                                        </p>
+                                    </CardContent>
+                                </Card>
+                            )}
+
                             {ideas.length === 0 ? (
                                 <Card>
                                     <CardContent className="py-12 text-center">
@@ -68,11 +103,57 @@ export default async function IdeasPage({ searchParams }: PageProps) {
                                 </div>
                             )}
 
-                            {ideas.length > 0 && (
-                                <div className="flex justify-center pt-8">
-                                    <Button variant="outline" className="mx-auto">
-                                        Load More Ideas
-                                    </Button>
+                            {totalPages > 1 && (
+                                <div className="flex items-center justify-center gap-2 pt-8">
+                                    {currentPage === 1 ? (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            disabled
+                                        >
+                                            <ChevronLeft className="h-4 w-4 mr-1" />
+                                            Previous
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            asChild
+                                        >
+                                            <Link href={buildPageUrl(currentPage - 1)}>
+                                                <ChevronLeft className="h-4 w-4 mr-1" />
+                                                Previous
+                                            </Link>
+                                        </Button>
+                                    )}
+
+                                    <div className="flex items-center gap-2 px-4">
+                                        <span className="text-sm text-muted-foreground">
+                                            Page {currentPage} of {totalPages}
+                                        </span>
+                                    </div>
+
+                                    {currentPage === totalPages ? (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            disabled
+                                        >
+                                            Next
+                                            <ChevronRight className="h-4 w-4 ml-1" />
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            asChild
+                                        >
+                                            <Link href={buildPageUrl(currentPage + 1)}>
+                                                Next
+                                                <ChevronRight className="h-4 w-4 ml-1" />
+                                            </Link>
+                                        </Button>
+                                    )}
                                 </div>
                             )}
                         </div>

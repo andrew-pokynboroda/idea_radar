@@ -7,31 +7,12 @@ import { Theme, GenerationResults, ExistingIdea } from './types';
 const supabaseClient = createAdminClient();
 
 export interface OrchestratorOptions {
-    /**
-     * Source adapters to use for fetching content
-     */
     sourceAdapters: SourceAdapter[];
-
-    /**
-     * Pain point analyzer instance
-     */
     painPointAnalyzer: PainPointAnalyzer;
-
-    /**
-     * Idea generator instance
-     */
     ideaGenerator: IdeaGenerator;
-
-    /**
-     * Optional: Delay between processing items (ms)
-     */
     processingDelay?: number;
 }
 
-/**
- * Main orchestrator for the idea generation pipeline
- * Coordinates sources, analysis, generation, and persistence
- */
 export class IdeaGenerationOrchestrator {
     private sourceAdapters: SourceAdapter[];
     private painPointAnalyzer: PainPointAnalyzer;
@@ -45,10 +26,6 @@ export class IdeaGenerationOrchestrator {
         this.processingDelay = options.processingDelay ?? 1000;
     }
 
-    /**
-     * Execute the idea generation pipeline
-     * @returns Results summary
-     */
     async execute(): Promise<GenerationResults> {
         console.log('[Orchestrator] Starting idea generation job...');
 
@@ -60,10 +37,9 @@ export class IdeaGenerationOrchestrator {
             errors: [],
         };
 
-        // Fetch all themes
         const { data: themes, error: themesError } = await supabaseClient
             .from('themes')
-            .select('id, name, keywordss');
+            .select('id, name, keywords');
 
         if (themesError) {
             throw new Error(`Failed to fetch themes: ${themesError.message}`);
@@ -74,7 +50,6 @@ export class IdeaGenerationOrchestrator {
             return results;
         }
 
-        // Process each theme
         for (const theme of themes as Theme[]) {
             try {
                 await this.processTheme(theme, results);
@@ -89,21 +64,15 @@ export class IdeaGenerationOrchestrator {
         return results;
     }
 
-    /**
-     * Process a single theme
-     */
     private async processTheme(theme: Theme, results: GenerationResults): Promise<void> {
         console.log(`[Orchestrator] Processing theme: ${theme.name}`);
 
-        // Fetch existing ideas for this theme
         const existingIdeas = await this.fetchExistingIdeas(theme.id);
 
-        // Fetch content from all source adapters
         for (const adapter of this.sourceAdapters) {
             try {
                 const content = await adapter.fetchContent(theme);
 
-                // Process each content item
                 for (const item of content) {
                     try {
                         await this.processContent(theme, item, existingIdeas, results);
@@ -131,18 +100,11 @@ export class IdeaGenerationOrchestrator {
         existingIdeas: ExistingIdea[],
         results: GenerationResults
     ): Promise<void> {
-        // Step 1: Analyze for pain points
         const painPointAnalysis = await this.painPointAnalyzer.analyze(content.text);
 
-        if (!this.painPointAnalyzer.isSignificant(painPointAnalysis)) {
-            return; // Skip if no significant pain point
-        }
+        if (!painPointAnalysis) return; // Skip if no significant pain point
 
         console.log(`[Orchestrator] Found pain point: ${painPointAnalysis.explanation}`);
-
-        // Log the source
-        await this.logSource(theme.id, content.sourceType, painPointAnalysis.explanation || '');
-        results.sources_logged++;
 
         // Step 2: Generate or improve idea
         const ideaResult = await this.ideaGenerator.generate(
@@ -154,59 +116,173 @@ export class IdeaGenerationOrchestrator {
 
         // Step 3: Persist to database
         if (ideaResult.action === 'NEW') {
-            await this.createIdea(theme.id, ideaResult, existingIdeas);
+            await this.createIdea(theme.id, ideaResult, content, existingIdeas);
             results.ideas_created++;
             console.log(`[Orchestrator] Created new idea: ${ideaResult.name}`);
         } else if (ideaResult.action === 'IMPROVE' && ideaResult.target_idea_id) {
-            await this.updateIdea(ideaResult);
+            await this.updateIdea(ideaResult, content);
             results.ideas_updated++;
             console.log(`[Orchestrator] Updated idea: ${ideaResult.name}`);
         }
     }
 
-    /**
-     * Fetch existing ideas for a theme
-     */
     private async fetchExistingIdeas(themeId: number): Promise<ExistingIdea[]> {
-        // Stubbed to avoid type errors
-        return [];
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+        const { data, error } = await supabaseClient
+            .from('ideas')
+            .select('id, name, pitch, key_pain_insight, score')
+            .eq('theme_id', themeId)
+            .gte('created_at', thirtyDaysAgo.toISOString());
+
+        if (error) {
+            console.error(`[Orchestrator] Error fetching existing ideas for theme ${themeId}:`, error);
+            return [];
+        }
+
+        return (data as ExistingIdea[]) || [];
     }
 
     /**
-     * Log a source to the database
-     */
-    private async logSource(
-        themeId: number,
-        sourceType: string,
-        insight: string
-    ): Promise<void> {
-        // Stubbed to avoid type errors
-        console.log('[Orchestrator] (Stub) Log source:', { themeId, sourceType, insight });
-    }
-
-    /**
-     * Create a new idea
+     * Create a new idea and its source
      */
     private async createIdea(
         themeId: number,
         ideaResult: { name: string; pitch: string; key_pain_insight: string; score: number },
-        existingIdeas: ExistingIdea[]
+        contentSource: { url: string; sourceType: string },
+        existingIdeas: ExistingIdea[] // This parameter is not used here, but kept for consistency with original stub
     ): Promise<void> {
-        // Stubbed to avoid type errors
-        console.log('[Orchestrator] (Stub) Create idea:', ideaResult);
+        console.log('[Orchestrator] Creating new idea:', {
+            name: ideaResult.name,
+            themeId,
+            sourceType: contentSource.sourceType,
+            sourceUrl: contentSource.url
+        });
+
+        const { data: newIdea, error: ideaError } = await (supabaseClient
+            .from('ideas') as any)
+            .insert({
+                theme_id: themeId,
+                name: ideaResult.name,
+                pitch: ideaResult.pitch,
+                key_pain_insight: ideaResult.key_pain_insight,
+                score: ideaResult.score,
+                mvp: JSON.stringify(ideaResult.mvp),
+            })
+            .select('id')
+            .single();
+
+        if (ideaError) {
+            console.error(`[Orchestrator] Error creating idea: ${ideaError.message}`, ideaError);
+            throw ideaError;
+        }
+
+        console.log('[Orchestrator] Idea created successfully with ID:', newIdea?.id);
+
+        console.log('[Orchestrator] Inserting idea source:', newIdea);
+        if (newIdea) {
+            const sourceData = {
+                idea_id: newIdea.id,
+                source_type: contentSource.sourceType,
+                url: contentSource.url
+            };
+
+            console.log('[Orchestrator] Inserting idea source:', sourceData);
+
+            const { data: sourceResult, error: sourceError } = await (supabaseClient
+                .from('idea_sources') as any)
+                .insert(sourceData)
+                .select();
+
+            if (sourceError) {
+                console.error(`[Orchestrator] Error creating idea source:`, {
+                    message: sourceError.message,
+                    code: sourceError.code,
+                    details: sourceError.details,
+                    hint: sourceError.hint,
+                    sourceData
+                });
+                // Decide if you want to throw here or just log and continue
+                // For now, we'll log and let the idea creation succeed
+            } else {
+                console.log('[Orchestrator] Idea source created successfully:', sourceResult);
+            }
+        } else {
+            console.warn('[Orchestrator] No idea returned after insert, cannot create source');
+        }
     }
 
     /**
      * Update an existing idea
      */
-    private async updateIdea(ideaResult: {
-        target_idea_id?: number;
-        pitch: string;
-        key_pain_insight: string;
-        score: number;
-    }): Promise<void> {
-        // Stubbed to avoid type errors
-        console.log('[Orchestrator] (Stub) Update idea:', ideaResult);
+    private async updateIdea(
+        ideaResult: {
+            target_idea_id?: number;
+            pitch: string;
+            key_pain_insight: string;
+            score: number;
+            mvp: any;
+        },
+        contentSource: { url: string; sourceType: string }
+    ): Promise<void> {
+        if (!ideaResult.target_idea_id) {
+            console.warn('[Orchestrator] Attempted to update idea without target_idea_id.');
+            return;
+        }
+
+        console.log(`[Orchestrator] Updating idea ${ideaResult.target_idea_id}:`, {
+            pitch: ideaResult.pitch,
+            key_pain_insight: ideaResult.key_pain_insight,
+            score: ideaResult.score,
+            mvp: ideaResult.mvp,
+            sourceType: contentSource.sourceType,
+            sourceUrl: contentSource.url
+        });
+
+        const { error: updateError } = await supabaseClient
+            .from('ideas')
+            .update({
+                pitch: ideaResult.pitch,
+                key_pain_insight: ideaResult.key_pain_insight,
+                score: ideaResult.score,
+                mvp: JSON.stringify(ideaResult.mvp)
+            })
+            .eq('id', ideaResult.target_idea_id);
+
+        if (updateError) {
+            console.error(`[Orchestrator] Error updating idea ${ideaResult.target_idea_id}: ${updateError.message}`);
+            throw updateError;
+        }
+
+        console.log(`[Orchestrator] Idea ${ideaResult.target_idea_id} updated successfully.`);
+
+        // Create an idea source for the update
+        const sourceData = {
+            idea_id: ideaResult.target_idea_id,
+            source_type: contentSource.sourceType,
+            url: contentSource.url
+        };
+
+        console.log('[Orchestrator] Inserting idea source for updated idea:', sourceData);
+
+        const { error: sourceError } = await (supabaseClient
+            .from('idea_sources') as any)
+            .insert(sourceData)
+            .select();
+
+        if (sourceError) {
+            console.error(`[Orchestrator] Error creating idea source for updated idea ${ideaResult.target_idea_id}:`, {
+                message: sourceError.message,
+                code: sourceError.code,
+                details: sourceError.details,
+                hint: sourceError.hint,
+                sourceData
+            });
+            // Log the error but don't re-throw, as the idea update itself was successful.
+        } else {
+            console.log(`[Orchestrator] Idea source created for updated idea ${ideaResult.target_idea_id}.`);
+        }
     }
 
     /**

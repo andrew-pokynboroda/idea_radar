@@ -13,19 +13,19 @@ export interface Database {
                 Row: {
                     id: number
                     name: string
-                    keywordss: string
+                    keywords: string
                     created_at: string
                 }
                 Insert: {
                     id?: number
                     name: string
-                    keywordss: string
+                    keywords: string
                     created_at?: string
                 }
                 Update: {
                     id?: number
                     name?: string
-                    keywordss?: string
+                    keywords?: string
                     created_at?: string
                 }
             }
@@ -37,6 +37,7 @@ export interface Database {
                     key_pain_insight: string
                     score: number
                     theme_id: number
+                    mvp: string
                     created_at: string
                 }
                 Insert: {
@@ -46,6 +47,7 @@ export interface Database {
                     key_pain_insight: string
                     score: number
                     theme_id: number
+                    mvp: string
                     created_at?: string
                 }
                 Update: {
@@ -55,29 +57,30 @@ export interface Database {
                     key_pain_insight?: string
                     score?: number
                     theme_id?: number
+                    mvp?: string
                     created_at?: string
                 }
             }
             idea_sources: {
                 Row: {
                     id: number
+                    idea_id: number
                     source_type: string
-                    extracted_insight: string
-                    theme_id: number
+                    url: string
                     created_at: string
                 }
                 Insert: {
                     id?: number
+                    idea_id: number
                     source_type: string
-                    extracted_insight: string
-                    theme_id: number
+                    url: string
                     created_at?: string
                 }
                 Update: {
                     id?: number
+                    idea_id?: number
                     source_type?: string
-                    extracted_insight?: string
-                    theme_id?: number
+                    url?: string
                     created_at?: string
                 }
             }

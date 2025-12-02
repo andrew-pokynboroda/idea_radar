@@ -1,0 +1,1152 @@
+[
+    {
+        "subreddit": "r/remotework",
+        "description": "Discussion about working remotely, digital nomad lifestyle, and WFH struggles.",
+        "posts": [
+            {
+                "id": "RW001",
+                "title": "Loneliness is getting to me after 2 years.",
+                "body": "I love the freedom of WFH, but the isolation is real. I go days without speaking to anyone face-to-face. Slack huddles aren't the same. I feel like I'm losing my social skills.",
+                "pain_point_category": "Social Isolation",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW002",
+                "title": "Timezone math is ruining my sleep schedule.",
+                "body": "My team is spread across EST, GMT, and JST. I'm constantly waking up at 5 AM or staying up until midnight for 'all-hands' meetings. There has to be a better way to handle async comms.",
+                "pain_point_category": "Timezone Management",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW003",
+                "title": "VPN lag makes work impossible.",
+                "body": "Trying to access the internal file server through the company VPN takes 10 minutes to open a single PDF. It kills my productivity.",
+                "pain_point_category": "Technical/Infrastructure",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW004",
+                "title": "Can't separate work from life.",
+                "body": "My desk is in my bedroom. I wake up, see work. I go to sleep, see work. I feel like I'm living at the office rather than working from home.",
+                "pain_point_category": "Work-Life Balance",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW005",
+                "title": "Equipment stipend is a joke.",
+                "body": "$200 for a home office setup? That barely covers a decent chair, let alone a monitor and desk. My back is killing me sitting on a dining chair.",
+                "pain_point_category": "Financial/Equipment Support",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW006",
+                "title": "Micromanagement software.",
+                "body": "My boss installed mouse-tracking software. If I stop moving for 5 minutes, I get flagged as 'idle'. It's demeaning and stressful.",
+                "pain_point_category": "Surveillance/Trust",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "RW007",
+                "title": "Missing out on promotions.",
+                "body": "I feel invisible. The people who go into the hybrid office get all the good projects. Out of sight, out of mind.",
+                "pain_point_category": "Career Advancement",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW008",
+                "title": "Too many communication channels.",
+                "body": "We use Slack, Teams, Email, Asana, and Jira. I spend half my day just checking inboxes to make sure I didn't miss a notification.",
+                "pain_point_category": "Tool Fatigue",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW009",
+                "title": "Distractions from family.",
+                "body": "My kids think because I'm home, I'm available. It's impossible to do deep work without interruptions.",
+                "pain_point_category": "Environment/Distractions",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW010",
+                "title": "Tax complications for digital nomads.",
+                "body": "Trying to figure out where I owe taxes while working from 3 different countries this year is a nightmare. Accountants quote me thousands.",
+                "pain_point_category": "Legal/Tax Complexity",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW011",
+                "title": "Video call fatigue.",
+                "body": "Why does every conversation need to be a Zoom call with video on? I'm exhausted by 2 PM from staring at faces.",
+                "pain_point_category": "Meeting Fatigue",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW012",
+                "title": "Onboarding was non-existent.",
+                "body": "Started a new remote job 3 weeks ago. Still don't have access to all the tools. No one answers my DMs. I feel lost.",
+                "pain_point_category": "Onboarding Experience",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW013",
+                "title": "Eating poorly.",
+                "body": "Without the routine of packing a lunch, I just graze on snacks all day. Gained 15lbs since starting remote.",
+                "pain_point_category": "Health Habits",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "RW014",
+                "title": "Coworking spaces are too expensive.",
+                "body": "I need to get out of the house, but WeWork is charging $400/mo for a hot desk. It's too much.",
+                "pain_point_category": "Cost of Workspace",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW015",
+                "title": "Slow feedback loops.",
+                "body": "I send a design for review and don't hear back for 6 hours. It blocks my entire day.",
+                "pain_point_category": "Async Workflow",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW016",
+                "title": "Noise canceling headphones aren't enough.",
+                "body": "My neighbor is renovating. The drilling is constant. I can't take calls.",
+                "pain_point_category": "Environment/Noise",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW017",
+                "title": "Security compliance is a headache.",
+                "body": "The new 2FA requirements mean I have to use my personal phone every time I log in. I hate mixing personal and work devices.",
+                "pain_point_category": "Security/Privacy",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "RW018",
+                "title": "No clear 'end' to the day.",
+                "body": "I find myself answering emails at 9 PM just because the laptop is open.",
+                "pain_point_category": "Boundaries",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "RW019",
+                "title": "Travel planning is hard.",
+                "body": "Finding Airbnbs with verified high-speed wifi is a gamble. 'Wifi available' doesn't mean it's good enough for video calls.",
+                "pain_point_category": "Travel Logistics",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "RW020",
+                "title": "Missing the office banter.",
+                "body": "I miss the random conversations at the coffee machine. Work feels so transactional now.",
+                "pain_point_category": "Social Connection",
+                "pain_point_severity": "Low"
+            }
+        ]
+    },
+    {
+        "subreddit": "r/personalfinance",
+        "description": "Learn about budgeting, saving, investing, and retirement planning.",
+        "posts": [
+            {
+                "id": "PF001",
+                "title": "Budgeting apps never sync correctly.",
+                "body": "I've tried Mint, YNAB, and Copilot. My credit union connection breaks every week. I spend more time fixing the connection than budgeting.",
+                "pain_point_category": "Software Reliability",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF002",
+                "title": "Overwhelmed by debt repayment strategies.",
+                "body": "Snowball vs Avalanche? I have 4 credit cards and a student loan. I did the math but I just feel paralyzed and keep paying the minimums.",
+                "pain_point_category": "Decision Paralysis",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF003",
+                "title": "Hidden fees in investment accounts.",
+                "body": "Just realized my 'managed' portfolio has a 1.5% expense ratio. I've lost thousands over the years without knowing.",
+                "pain_point_category": "Transparency/Fees",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF004",
+                "title": "Credit score dropped for no reason.",
+                "body": "My score dipped 40 points. No new inquiries, no missed payments. The reporting agencies are impossible to contact.",
+                "pain_point_category": "Credit Reporting",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF005",
+                "title": "Can't track cash spending.",
+                "body": "I use cash for tips and small vendors. It never makes it into my budget app, so my monthly numbers are always off.",
+                "pain_point_category": "Data Entry",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "PF006",
+                "title": "Subscription creep.",
+                "body": "I have so many $5 and $10 subscriptions I've lost track. I need a tool that actually cancels them for me, not just lists them.",
+                "pain_point_category": "Subscription Management",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF007",
+                "title": "Tax return rejected.",
+                "body": "TurboTax said everything was fine, but the IRS rejected it because of a mismatch in my AGI from last year. Now I have to print and mail it.",
+                "pain_point_category": "Tax Filing",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF008",
+                "title": "Buying a house feels impossible.",
+                "body": "Saved $50k for a down payment, but house prices rose 20% in my area. The goalpost keeps moving.",
+                "pain_point_category": "Market Conditions",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "PF009",
+                "title": "Medical debt sent to collections.",
+                "body": "I never got the original bill because I moved. Now my credit is ruined over $150. The system is broken.",
+                "pain_point_category": "Healthcare Billing",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF010",
+                "title": "Split expenses with partner.",
+                "body": "We don't have a joint account yet. Splitting rent, groceries, and utilities manually every month in a spreadsheet is tedious.",
+                "pain_point_category": "Joint Finances",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF011",
+                "title": "Crypto taxes are a nightmare.",
+                "body": "I made 500 small trades last year. Trying to calculate the cost basis for each one is going to take me weeks.",
+                "pain_point_category": "Crypto/Tax Complexity",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF012",
+                "title": "Saving for kids' college.",
+                "body": "529 plans are confusing. I don't know which state plan to pick or how the investment options work.",
+                "pain_point_category": "Financial Literacy",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF013",
+                "title": "Emergency fund depleted.",
+                "body": "Car broke down and depleted my savings. I feel naked without that safety net and don't know how to rebuild it fast.",
+                "pain_point_category": "Financial Security",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF014",
+                "title": "Freelance income is inconsistent.",
+                "body": "Feast or famine. Hard to budget when I make $8k one month and $500 the next.",
+                "pain_point_category": "Income Volatility",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF015",
+                "title": "Bank fraud detection blocked my card abroad.",
+                "body": "I told them I was traveling! Now I'm stuck in Tokyo with no access to funds until Monday.",
+                "pain_point_category": "Banking Service",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "PF016",
+                "title": "Grocery inflation.",
+                "body": "My weekly food bill went from $100 to $160 buying the exact same things. I don't know what else to cut.",
+                "pain_point_category": "Cost of Living",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF017",
+                "title": "Forex fees.",
+                "body": "I get paid in EUR but live in USD. PayPal and banks are eating 3-4% of my income in conversion fees.",
+                "pain_point_category": "Currency Exchange",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF018",
+                "title": "Confused by insurance deductibles.",
+                "body": "High deductible vs low premium? I guessed wrong last year and paid out of pocket for everything.",
+                "pain_point_category": "Insurance Complexity",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF019",
+                "title": "Impulse buying.",
+                "body": "Instagram ads get me every time. I need a way to block payments to certain merchants.",
+                "pain_point_category": "Behavioral Finance",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF020",
+                "title": "Retirement calculator anxiety.",
+                "body": "Every calculator gives me a different number for how much I need to retire. $1M? $3M? I have no clear target.",
+                "pain_point_category": "Planning Uncertainty",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF021",
+                "title": "Confused by ROTH vs Traditional 401k/IRA.",
+                "body": "I'm 25 and my company just offered 401k. I don't know if I should choose Roth (pay taxes now) or Traditional (pay taxes later).",
+                "pain_point_category": "Planning Uncertainty",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF022",
+                "title": "Landlord refusing to return security deposit.",
+                "body": "Moved out 45 days ago. Landlord is ghosting my calls and texts. They claimed 'excessive cleaning fees' without proof.",
+                "pain_point_category": "Legal/Housing",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF023",
+                "title": "Trying to calculate capital gains tax manually for stocks.",
+                "body": "I used a few different brokers and transferred stocks, so my cost basis is all over the place. Preparing taxes is a huge manual calculation job.",
+                "pain_point_category": "Tax Complexity",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF024",
+                "title": "Got hit with an overdraft fee for $5 when my balance was $2.",
+                "body": "The bank charges me $35 for a tiny mistake. It feels punitive and predatory. I wish I had better alerts.",
+                "pain_point_category": "Banking Service",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF025",
+                "title": "Feeling guilty spending money on anything non-essential.",
+                "body": "I hit all my savings goals, but buying a $4 coffee makes me feel like a failure. It's impacting my quality of life.",
+                "pain_point_category": "Behavioral Finance",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF026",
+                "title": "Student loan repayment calculator is overwhelming.",
+                "body": "Income-driven, graduated, extended... I have no idea which plan will minimize my total interest paid over 10 years.",
+                "pain_point_category": "Debt Management",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF027",
+                "title": "Parents keep asking for money and derailing my savings plan.",
+                "body": "I want to help them, but they need $1k every month and it means I can't build my emergency fund.",
+                "pain_point_category": "Family Finance",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "PF028",
+                "title": "Auto-investing breaks when I need to rebalance.",
+                "body": "I use a robo-advisor, but when the market dips and I want to strategically buy, the auto-transfer locks me out.",
+                "pain_point_category": "Software Reliability",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "PF029",
+                "title": "Identity theft scare, someone tried to open a credit card.",
+                "body": "I froze my credit, but the process of monitoring everything and changing passwords is taking over my life.",
+                "pain_point_category": "Security/Fraud",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "PF030",
+                "title": "Don't know how to evaluate a financial advisor's fees.",
+                "body": "Is 1% AUM a good deal? How do I check for conflicts of interest? I need a simple guide to vetting them.",
+                "pain_point_category": "Transparency/Fees",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF031",
+                "title": "Spouse hides spending, causing arguments.",
+                "body": "We agreed on a budget, but they have secret credit card debt. I feel betrayed and our financial future is at risk.",
+                "pain_point_category": "Joint Finances",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "PF032",
+                "title": "Insurance agent constantly upselling me new policies.",
+                "body": "Every few months my agent pushes life insurance, disability insurance, or umbrella policies. I just want simple coverage.",
+                "pain_point_category": "Sales Pressure",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "PF033",
+                "title": "How to invest small amounts?",
+                "body": "I only have $50 extra a month. Index funds seem high-barrier. I need simple, low-fee micro-investing options.",
+                "pain_point_category": "Investment Access",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "PF034",
+                "title": "Fear of missing out (FOMO) on meme stocks.",
+                "body": "I see others getting rich quickly on volatile stocks, and sticking to boring index funds feels like I'm losing the game.",
+                "pain_point_category": "Market Conditions",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF035",
+                "title": "My net worth tracker gives inconsistent results across months.",
+                "body": "One month it pulls my retirement balance, the next it misses it. The dashboard numbers are unreliable.",
+                "pain_point_category": "Software Reliability",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "PF036",
+                "title": "Car insurance rates jumped 30% for no reason.",
+                "body": "I had no accidents or tickets. When I called, they just said 'market conditions.' I feel ripped off.",
+                "pain_point_category": "Cost of Living",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF037",
+                "title": "Trying to consolidate high-interest payday loans.",
+                "body": "I'm stuck in a cycle of borrowing to pay off the interest. I desperately need a low-interest debt consolidation plan.",
+                "pain_point_category": "Debt Crisis",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "PF038",
+                "title": "Can't figure out how to transfer 401k from previous employer.",
+                "body": "The paperwork is archaic. It feels like they deliberately make it difficult so the money stays there.",
+                "pain_point_category": "Account Transfer",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "PF039",
+                "title": "The sheer volume of financial news is too distracting.",
+                "body": "Should I be worried about China? Recession? Interest rates? I waste hours reading and end up doing nothing.",
+                "pain_point_category": "Information Overload",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "PF040",
+                "title": "I'm worried about hyperinflation eating my cash savings.",
+                "body": "Should I move everything into TIPS? Gold? I have money sitting in a savings account because I'm paralyzed by the fear of inflation.",
+                "pain_point_category": "Market Conditions",
+                "pain_point_severity": "High"
+            }
+        ]
+    },
+    {
+        "subreddit": "r/Health",
+        "description": "News and discussion about health, nutrition, and wellness.",
+        "posts": [
+            {
+                "id": "HLT001",
+                "title": "Doctor won't listen to my symptoms.",
+                "body": "I've been tired for months. Doctor ran a basic blood panel, said I'm fine, and told me to sleep more. I know something is wrong.",
+                "pain_point_category": "Medical Gaslighting",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT002",
+                "title": "Insurance denied my MRI.",
+                "body": "Doctor ordered it. Insurance deemed it 'not medically necessary'. Now I have to appeal, which takes weeks.",
+                "pain_point_category": "Insurance Bureaucracy",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT003",
+                "title": "Pill organizer is depressing.",
+                "body": "I'm 30 and I take 6 pills a day. Managing refills, doctor auths, and pharmacy trips is a part-time job.",
+                "pain_point_category": "Medication Management",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT004",
+                "title": "Can't stick to a diet.",
+                "body": "I know what I should eat, but after a stressful day, I just order pizza. I need better coping mechanisms.",
+                "pain_point_category": "Adherence/Willpower",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT005",
+                "title": "Waiting 3 months for a specialist.",
+                "body": "Referral went through, but the dermatologist is booked until October. My rash is getting worse.",
+                "pain_point_category": "Access to Care",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT006",
+                "title": "Mental health apps are expensive.",
+                "body": "BetterHelp is $300/mo. I can't afford that. Where is the affordable therapy?",
+                "pain_point_category": "Cost of Mental Health",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT007",
+                "title": "Conflicting nutrition advice.",
+                "body": "Keto says fat is good. Vegan says meat is bad. Paleo says avoid grains. I'm so confused I just want to give up.",
+                "pain_point_category": "Information Overload",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT008",
+                "title": "Chronic pain flair ups.",
+                "body": "It's hard to hold down a job when I have random days where I can't get out of bed due to back pain.",
+                "pain_point_category": "Disability/Chronic Pain",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "HLT009",
+                "title": "Sleep tracking anxiety.",
+                "body": "My Apple Watch tells me my sleep is bad, which makes me anxious, which makes my sleep worse.",
+                "pain_point_category": "Health Anxiety",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT010",
+                "title": "Gym intimidation.",
+                "body": "I want to lift weights, but the free weight section is full of huge guys. I feel awkward and stick to the treadmill.",
+                "pain_point_category": "Social Anxiety",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT011",
+                "title": "Telehealth was useless.",
+                "body": "Paid $50 for a video call. Doctor spent 3 minutes with me and told me to go to Urgent Care anyway.",
+                "pain_point_category": "Quality of Care",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT012",
+                "title": "Dental work costs.",
+                "body": "I need a root canal. It's $1,200 even with insurance. I'm just living with the toothache.",
+                "pain_point_category": "Cost of Care",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT013",
+                "title": "Forgot to drink water.",
+                "body": "I get headaches at 3 PM every day because I simply forget to hydrate while working.",
+                "pain_point_category": "Habit Formation",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT014",
+                "title": "Supplements are unregulated.",
+                "body": "Bought magnesium that did nothing. Turned out to be filler. How do I trust these brands?",
+                "pain_point_category": "Product Trust",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT015",
+                "title": "Post-COVID fatigue.",
+                "body": "It's been 6 months and I still get winded walking up stairs. Doctors just shrug.",
+                "pain_point_category": "Long-term Illness",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT016",
+                "title": "Finding a therapist who fits.",
+                "body": "I've tried 3 therapists. Retelling my trauma 3 times is exhausting. I just want someone who gets it.",
+                "pain_point_category": "Provider Matching",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT017",
+                "title": "Healthy food takes too long to prep.",
+                "body": "Chopping veggies takes 20 mins. Drive-thru takes 5. Time is my barrier.",
+                "pain_point_category": "Convenience",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT018",
+                "title": "Eyestrain from screens.",
+                "body": "Blue light glasses aren't helping. My vision is getting blurry by end of day.",
+                "pain_point_category": "Occupational Health",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT019",
+                "title": "Hearing loss denial.",
+                "body": "I know I need hearing aids but they are huge, ugly, and expensive. I just ask people to repeat themselves.",
+                "pain_point_category": "Stigma/Cost",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT020",
+                "title": "Seasonal Affective Disorder.",
+                "body": "Winter is coming and I'm already dreading the depression. Light therapy helps a bit but not enough.",
+                "pain_point_category": "Mental Health",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT021",
+                "title": "Constant fatigue despite 8 hours of sleep.",
+                "body": "I'm sleeping 8-9 hours a night, but wake up feeling exhausted. I've cut caffeine and sugar, but nothing changes.",
+                "pain_point_category": "Undiagnosed Symptom",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT022",
+                "title": "Dentist wants to replace old fillings but insurance won't cover.",
+                "body": "They claim the old amalgam fillings are 'not failed' yet. It's preventative, but I can't afford $800 out of pocket.",
+                "pain_point_category": "Cost of Care",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT023",
+                "title": "Too much conflicting advice on managing IBS symptoms.",
+                "body": "FODMAP, low-fiber, high-fiber, cut gluten... Every doctor or website says something different. I need a clear plan.",
+                "pain_point_category": "Information Overload",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT024",
+                "title": "Trying to find an accurate food logging app without ads.",
+                "body": "Every calorie tracker is either full of sponsored content, or the food database is inaccurate.",
+                "pain_point_category": "Tool Fatigue",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT025",
+                "title": "Feeling judged by my doctor for my weight.",
+                "body": "Every symptom I mention, they link back to my weight. They don't investigate the underlying issue.",
+                "pain_point_category": "Medical Gaslighting",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT026",
+                "title": "The side effects of my new antidepressant are unbearable.",
+                "body": "The nausea and dizziness are making it impossible to work. I'm scared to try another drug and go through this again.",
+                "pain_point_category": "Medication Management",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT027",
+                "title": "Dealing with recurring sinus infections every fall.",
+                "body": "I use saline rinses, antihistamines, but they always come back. It's exhausting and kills my productivity.",
+                "pain_point_category": "Chronic Condition",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT028",
+                "title": "Need motivation to start strength training, but fear injury.",
+                "body": "I know lifting weights is good, but I don't know the forms and I'm afraid of hurting my back. Where do I start?",
+                "pain_point_category": "Adherence/Willpower",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT029",
+                "title": "Health apps don't integrate well; data is scattered.",
+                "body": "Sleep is on Oura, workouts on Garmin, and food is manually logged. I need one unified view of my health.",
+                "pain_point_category": "Software Reliability",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT030",
+                "title": "Hospital bill coding error inflated the price by $3000.",
+                "body": "I spent hours comparing the codes on the bill to what the EOB said. It took 3 phone calls to correct the charge.",
+                "pain_point_category": "Healthcare Billing",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT031",
+                "title": "Trying to quit caffeine but the headaches are debilitating.",
+                "body": "I can't function at work with this level of pain. I feel addicted and trapped.",
+                "pain_point_category": "Habit Formation",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT032",
+                "title": "Lost my medical records from a move 5 years ago.",
+                "body": "My new doctor keeps asking for old X-rays from my childhood. Retrieving them from the old clinic is impossible.",
+                "pain_point_category": "Records Management",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT033",
+                "title": "Feeling burnt out from caring for an elderly parent.",
+                "body": "I love my mom, but I have no time for myself, work, or my own family. The stress is making me physically sick.",
+                "pain_point_category": "Caregiver Stress",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "HLT034",
+                "title": "My therapist suddenly retired; now I need to find a new one.",
+                "body": "It's so hard to start over and build trust with someone new. The referral process is long.",
+                "pain_point_category": "Provider Matching",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "HLT035",
+                "title": "Dealing with constant unsolicited health advice from family.",
+                "body": "My aunt sends me links to miracle cures for my chronic condition every week. It makes me feel angry and helpless.",
+                "pain_point_category": "Social Stress",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT036",
+                "title": "Urgent care waiting times are 5+ hours on weekends.",
+                "body": "I had a minor injury, but waiting all day for a 5-minute consult feels like a waste of time.",
+                "pain_point_category": "Access to Care",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT037",
+                "title": "How to find clean label protein powders that actually taste good?",
+                "body": "I keep buying expensive powders full of artificial sweeteners or chalky filler. Need reliable, trustworthy recommendations.",
+                "pain_point_category": "Product Trust",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT038",
+                "title": "My activity tracker overestimates my calories burned.",
+                "body": "It makes me think I can eat more than I should, which sabotages my weight loss efforts.",
+                "pain_point_category": "Tech Reliability",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "HLT039",
+                "title": "I keep forgetting my follow-up appointments.",
+                "body": "My clinic only calls once, and then I forget to schedule the next one, which delays my treatment.",
+                "pain_point_category": "Appointment Management",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "HLT040",
+                "title": "Trying to manage anxiety without medication using only behavioral methods.",
+                "body": "I'm relying on CBT exercises, meditation, and breathwork, but some days the panic is just overwhelming.",
+                "pain_point_category": "Mental Health",
+                "pain_point_severity": "High"
+            }
+        ]
+    },
+    {
+        "subreddit": "r/running",
+        "description": "Talk about running, shoes, gear, and training plans.",
+        "posts": [
+            {
+                "id": "SPT001",
+                "title": "Shin splints keep coming back.",
+                "body": "I rest for 2 weeks, they go away. I run 2 miles, they come back. I've changed shoes twice. What am I doing wrong?",
+                "pain_point_category": "Injury/Recovery",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "SPT002",
+                "title": "Hit a plateau in my 5k time.",
+                "body": "I've been stuck at 26 minutes for a year. No matter how much I train, I can't break 25.",
+                "pain_point_category": "Performance Plateau",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT003",
+                "title": "Finding safe running routes.",
+                "body": "I run at night due to work. Many streets have no sidewalks or lights. I don't feel safe.",
+                "pain_point_category": "Safety/Environment",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "SPT004",
+                "title": "Chafing nightmare.",
+                "body": "Long run yesterday ruined by chafing. I've tried BodyGlide but it wears off after hour 2.",
+                "pain_point_category": "Physical Discomfort",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT005",
+                "title": "Expensive gear wears out too fast.",
+                "body": "$160 Hoka shoes and the sole is peeling after 150 miles. I can't afford a new pair every month.",
+                "pain_point_category": "Equipment Durability",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT006",
+                "title": "Race entry fees.",
+                "body": "$150 for a half marathon? Plus travel? Running used to be a cheap sport.",
+                "pain_point_category": "Cost of Participation",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT007",
+                "title": "GPS watch accuracy.",
+                "body": "My Garmin said I ran 10k, Strava says 9.4k. It messes up my pace stats.",
+                "pain_point_category": "Tech Reliability",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT008",
+                "title": "Motivation in bad weather.",
+                "body": "It's been raining for a week. I hate treadmill running. Haven't run in 5 days.",
+                "pain_point_category": "Motivation/Environment",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT009",
+                "title": "Finding a coach.",
+                "body": "Online plans are too generic. Private coaches are too expensive. I need middle-ground guidance.",
+                "pain_point_category": "Coaching Access",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT010",
+                "title": "Runner's stomach.",
+                "body": "Every time I go past mile 6, I have urgent GI issues. It makes me scared to sign up for long races.",
+                "pain_point_category": "Physiological Issues",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "SPT011",
+                "title": "Blisters from new socks.",
+                "body": "Bought 'running specific' socks and got a huge blister on my arch. Marketing lie.",
+                "pain_point_category": "Gear Failure",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT012",
+                "title": "Boredom on long runs.",
+                "body": "Podcasts aren't cutting it anymore. 2 hours of running is mentally boring.",
+                "pain_point_category": "Mental Engagement",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT013",
+                "title": "Dog owners on trails.",
+                "body": "Unleashed dogs chasing me while the owner yells 'he's friendly!'. It's terrifying.",
+                "pain_point_category": "Safety/Others",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT014",
+                "title": "Recovery takes forever now.",
+                "body": "In my 20s I could run daily. In my 40s, one hard run means 2 days of limping.",
+                "pain_point_category": "Aging/Recovery",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT015",
+                "title": "Hydration vest fit.",
+                "body": "Every vest bounces or chafes my shoulders. Hard to find good fit for women.",
+                "pain_point_category": "Gear Fit",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT016",
+                "title": "Treadmill calibration.",
+                "body": "Gym treadmill says 7:00 pace but feels like a sprint. I don't trust the numbers.",
+                "pain_point_category": "Equipment Accuracy",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT017",
+                "title": "Managing sweat.",
+                "body": "It runs into my eyes and burns. Headbands slip off. I'm a mess.",
+                "pain_point_category": "Comfort",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT018",
+                "title": "Carrying phone/keys.",
+                "body": "Armbands cut circulation. Belts bounce. Pockets drag shorts down. Where do I put my stuff?",
+                "pain_point_category": "Logistics/Gear",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT019",
+                "title": "Post-race blues.",
+                "body": "Trained for 4 months for the marathon. Now that it's over, I feel empty and depressed.",
+                "pain_point_category": "Mental Health",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT020",
+                "title": "Advice overload.",
+                "body": "Foot strike, cadence, heart rate zones, lactate threshold. It's too much science. I just want to run.",
+                "pain_point_category": "Information Complexity",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT021",
+                "title": "Deciding between carbon plate shoes vs daily trainers.",
+                "body": "I only have budget for one pair. Should I get a super shoe for race day, or a durable shoe for my weekly mileage?",
+                "pain_point_category": "Equipment Choice",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT022",
+                "title": "Cannot find a consistent stretching routine that works.",
+                "body": "I feel tight all the time, especially my hamstrings. I try to follow videos but get inconsistent results.",
+                "pain_point_category": "Injury Prevention",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT023",
+                "title": "My knee hurts only after I stop running, not during.",
+                "body": "It's a dull ache that hits 20 minutes after my run. Is it IT band? Patellofemoral pain? I'm self-diagnosing and worried.",
+                "pain_point_category": "Injury/Diagnosis",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "SPT024",
+                "title": "Need a way to track weekly mileage automatically across apps.",
+                "body": "I run with my watch but also track strength on another app. I need a tool that aggregates the data seamlessly.",
+                "pain_point_category": "Tool Fatigue",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT025",
+                "title": "Group runs are too fast for me; I feel left behind.",
+                "body": "I want the camaraderie, but every group in my city is focused on sub-7 minute miles. I'm trying to break 9.",
+                "pain_point_category": "Social Anxiety",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT026",
+                "title": "Getting sick of the same 5 energy gel flavors.",
+                "body": "Strawberry-banana, vanilla, and chocolate. After mile 18 of a marathon, the taste makes me want to vomit.",
+                "pain_point_category": "Nutrition/Fuel",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT027",
+                "title": "How to run in extreme heat/humidity safely.",
+                "body": "Summer mornings are 90 degrees and 80% humidity. I get lightheaded easily. Is it safe to just walk instead?",
+                "pain_point_category": "Safety/Environment",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT028",
+                "title": "My dog pulls on the leash, making speed work impossible.",
+                "body": "I can't hit my target paces when my dog decides to chase a squirrel. I feel like I have to choose between them and running.",
+                "pain_point_category": "Logistics/Distraction",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT029",
+                "title": "Dealing with toenail loss after every marathon.",
+                "body": "It's painful and disgusting. I've sized up, worn different socks, but it still happens. Is this just running life?",
+                "pain_point_category": "Physical Discomfort",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT030",
+                "title": "Trying to calculate heart rate zones manually is a mess.",
+                "body": "220 minus age is too simplistic. Lactate threshold testing is too expensive. I need an easier, more accurate method.",
+                "pain_point_category": "Information Complexity",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT031",
+                "title": "My running playlist is stale, need new motivational music.",
+                "body": "Hearing the same 10 songs on repeat for my speed intervals is draining my motivation.",
+                "pain_point_category": "Mental Engagement",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT032",
+                "title": "I signed up for a race but now I'm terrified of failure.",
+                "body": "What if I miss the cutoff time? What if I have to walk the whole thing? The pressure is making me skip training runs.",
+                "pain_point_category": "Performance Anxiety",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "SPT033",
+                "title": "Finding cold weather gear that isn't bulky or restrictive.",
+                "body": "I feel like the Michelin Man running in 30-degree weather. I need thin, warm, technical layers.",
+                "pain_point_category": "Gear Fit",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT034",
+                "title": "Cannot figure out how to do proper speed work on a track.",
+                "body": "What is the proper warm-up/cool-down? How long are the rest intervals supposed to be? I need a step-by-step guide.",
+                "pain_point_category": "Training Strategy",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT035",
+                "title": "The temptation to skip runs on rest days is too high.",
+                "body": "I feel like I'm losing fitness if I take a day off. I need a tool that enforces the rest day schedule.",
+                "pain_point_category": "Adherence/Willpower",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT036",
+                "title": "My favorite trail is permanently closed due to construction.",
+                "body": "Now I have to run on busy roads with traffic. It was my only quiet, safe, shaded route.",
+                "pain_point_category": "Route Access",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT037",
+                "title": "Friends who don't run keep giving terrible advice.",
+                "body": "They tell me to 'just push through the pain' or 'run slower.' They don't understand training plans or injury prevention.",
+                "pain_point_category": "Social Stress",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "SPT038",
+                "title": "Water fountains on city routes are rarely working.",
+                "body": "I rely on them for long runs, but half the time they're broken or turned off for the season. I have to carry heavy bottles.",
+                "pain_point_category": "Hydration Logistics",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "SPT039",
+                "title": "Post-run hunger makes me overeat and negate the workout.",
+                "body": "I get back from a 10-miler and eat everything in the fridge. I need structured recovery meal advice.",
+                "pain_point_category": "Nutrition/Recovery",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "SPT040",
+                "title": "I'm not sure if I'm overtraining or just lazy.",
+                "body": "I feel heavy and slow. Is it time for a deload week, or am I just lacking motivation and being weak?",
+                "pain_point_category": "Training Uncertainty",
+                "pain_point_severity": "Moderate"
+            }
+        ]
+    },
+    {
+        "subreddit": "r/graphic_design",
+        "description": "A subreddit for graphic designers to discuss work, tools, and clients.",
+        "posts": [
+            {
+                "id": "GD001",
+                "title": "Client wants the logo 'bigger'.",
+                "body": "No matter what I design, the feedback is always 'make the logo bigger' and 'make it pop'. They don't respect white space.",
+                "pain_point_category": "Client Feedback",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD002",
+                "title": "Adobe subscription costs.",
+                "body": "$60/month forever. I stop paying, I lose access to my own files. We are being held hostage.",
+                "pain_point_category": "Software Cost",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD003",
+                "title": "Illustrator crashing.",
+                "body": "Lost 2 hours of work because AI crashed while saving. Yes, I should save more often, but the software shouldn't be this unstable.",
+                "pain_point_category": "Software Stability",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "GD004",
+                "title": "Imposter syndrome.",
+                "body": "I see portfolios on Behance and feel like a fraud. Everyone is so much better than me.",
+                "pain_point_category": "Mental Health",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "GD005",
+                "title": "Chasing invoices.",
+                "body": "I finished the project 2 months ago. Client says check is in the mail. I have bills to pay.",
+                "pain_point_category": "Payment/Cash Flow",
+                "pain_point_severity": "Critical"
+            },
+            {
+                "id": "GD006",
+                "title": "Scope creep.",
+                "body": "Agreed to a logo. Now they want business cards, social headers, and a flyer, all for the same price.",
+                "pain_point_category": "Project Management",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD007",
+                "title": "File management hell.",
+                "body": "Logo_final_v3_REAL_final_print.ai. I have 50 versions of every file and don't know which is the right one.",
+                "pain_point_category": "Organization",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "GD008",
+                "title": "Fonts not loading.",
+                "body": "Opened an old project. Adobe Fonts won't sync. Now I have to find a substitute or buy the font for $400.",
+                "pain_point_category": "Asset Management",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "GD009",
+                "title": "Clients sending logos in Word docs.",
+                "body": "Asked for a vector file. They sent a blurry JPEG pasted into a Word document. How do I work with this?",
+                "pain_point_category": "Client Literacy",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "GD010",
+                "title": "Portfolio hosting.",
+                "body": "Squarespace, Webflow, Cargo... I spend more time tweaking my portfolio site than actually designing for clients.",
+                "pain_point_category": "Self-Promotion",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "GD011",
+                "title": "Spec work requests.",
+                "body": "'Design a sample for us and if we like it, we'll hire you.' No. I don't work for free.",
+                "pain_point_category": "Industry Ethics",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD012",
+                "title": "Can't switch off creative brain.",
+                "body": "I critique menus at restaurants. I analyze kerning on street signs. It's exhausting.",
+                "pain_point_category": "Occupational Hazard",
+                "pain_point_severity": "Low"
+            },
+            {
+                "id": "GD013",
+                "title": "Color profiles print mismatch.",
+                "body": "Looked great on screen (RGB). Came back from printer looking muddy (CMYK). Client is unhappy.",
+                "pain_point_category": "Technical/Print",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD014",
+                "title": "Sitting all day.",
+                "body": "My wrist has carpal tunnel and my lower back aches. Design is destroying my body.",
+                "pain_point_category": "Ergonomics/Health",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD015",
+                "title": "Stock photo licensing.",
+                "body": "Found the perfect image. Extended license is $500. Budget is $0.",
+                "pain_point_category": "Resource Cost",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "GD016",
+                "title": "Too many tools to learn.",
+                "body": "Now I need to know Figma, After Effects, AND 3D modeling just to get a junior role? It's impossible.",
+                "pain_point_category": "Skill Inflation",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD017",
+                "title": "Version control for design.",
+                "body": "Abstract is okay, but I wish git worked for design files. Overwriting a teammate's work is my nightmare.",
+                "pain_point_category": "Collaboration",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "GD018",
+                "title": "Exporting assets.",
+                "body": "Devs need 1x, 2x, 3x, SVG, and PDF. Renaming and exporting 50 icons takes me half a day.",
+                "pain_point_category": "Tedious Tasks",
+                "pain_point_severity": "Moderate"
+            },
+            {
+                "id": "GD019",
+                "title": "Staying inspired.",
+                "body": "Burnout is hitting hard. Every layout looks the same. I have zero creative juice left.",
+                "pain_point_category": "Creativity Block",
+                "pain_point_severity": "High"
+            },
+            {
+                "id": "GD020",
+                "title": "AI taking jobs.",
+                "body": "Midjourney can make in seconds what takes me hours. I'm terrified for my future career.",
+                "pain_point_category": "Job Security",
+                "pain_point_severity": "Critical"
+            }
+        ]
+    }
+]

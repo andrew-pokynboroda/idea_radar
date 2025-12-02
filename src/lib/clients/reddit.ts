@@ -1,24 +1,82 @@
-import RedditClient from 'reddit-client-api';
+import mockData from './reddit_mock.json';
 
-interface RedditCredentials {
-    username: string;
-    password: string;
+// Define the shape of the mock data items
+interface MockPost {
+    id: string;
+    title: string;
+    body: string;
+    pain_point_category: string;
+    pain_point_severity: string;
 }
 
-/**
- * Creates and authenticates a Reddit client
- */
-export async function createRedditClient(): Promise<RedditClient> {
-    const reddit = new RedditClient({
-        apiKey: process.env.REDDIT_CLIENT_ID!,
-        apiSecret: process.env.REDDIT_CLIENT_SECRET!,
-        userAgent: process.env.REDDIT_USER_AGENT || 'IdeaRadar/1.0',
+interface MockSubreddit {
+    subreddit: string;
+    description: string;
+    posts: MockPost[];
+}
+
+// Define the shape of the Reddit API response expected by the adapter
+export interface RedditPost {
+    data: {
+        id: string;
+        title: string;
+        selftext: string;
+        permalink: string;
+        author: string;
+        score: number;
+        created_utc: number;
+    };
+}
+
+export class MockRedditClient {
+    constructor(config: any) {
+        // Config is ignored for mock
+    }
+
+    async auth(credentials: any) {
+        // Auth is a no-op for mock
+        return Promise.resolve();
+    }
+
+    async getSubredditPostsWithKeyword(keyword: string): Promise<RedditPost[]> {
+        // Find the subreddit in the mock data
+        // The mock data has "r/subredditName", so we need to match that
+        const searchTarget = `r/${keyword.toLowerCase()}`;
+        const mockSubreddit = (mockData as MockSubreddit[]).find(
+            (s) => s.subreddit.toLowerCase().includes(searchTarget)
+        );
+
+        if (!mockSubreddit) {
+            console.warn(`[MockRedditClient] Subreddit matching "${keyword}" not found in mock data.`);
+            return [];
+        }
+
+        // Map mock posts to the structure expected by RedditSourceAdapter
+        return mockSubreddit.posts.map((post) => ({
+            data: {
+                id: post.id,
+                title: post.title,
+                selftext: post.body,
+                // Generate fake values for fields missing in mock data but required by adapter
+                permalink: `/${mockSubreddit.subreddit}/comments/${post.id}/mock_post`,
+                author: 'mock_user',
+                score: Math.floor(Math.random() * 1000),
+                created_utc: Math.floor(Date.now() / 1000) - Math.floor(Math.random() * 86400 * 30), // Random time in last 30 days
+            },
+        }));
+    }
+}
+
+export async function createRedditClient(): Promise<MockRedditClient> {
+    const reddit = new MockRedditClient({
+        apiKey: 'mock',
+        apiSecret: 'mock',
+        userAgent: 'mock',
     });
 
-    // Authenticate
     await reddit.auth({
-        username: process.env.REDDIT_USERNAME!,
-        password: process.env.REDDIT_PASSWORD!,
+        username: 'mock',
+        password: 'mock',
     });
 
     return reddit;

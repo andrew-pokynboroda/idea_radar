@@ -1,5 +1,5 @@
 import { PainPointAnalysis } from '../types';
-import { openaiClient } from '@/lib/clients/openai';
+import { openaiClient } from '@/lib/clients/open_router';
 
 const PAIN_POINT_PROMPT = `You are an expert at identifying business pain points in social media discussions.
 
@@ -21,50 +21,40 @@ Respond in JSON format:
 Think step by step:
 1. What problem is being discussed?
 2. Is this a real, actionable problem or just venting?
-3. Would a SaaS solution make sense here?
-4. How urgent/important does this seem?
+3. Is there any existing solutions that perfectly solve this problem?
+4. Would a SaaS solution make sense here?
+5. How urgent/important does this seem?
 
 Content:
 `;
 
-/**
- * Service for analyzing content to identify pain points using LLM
- */
+const ACCEPTABLE_RELEVANCE_THRESHOLD = 7;
+
 export class PainPointAnalyzer {
-    /**
-     * Analyze content for pain points
-     * @param content The content to analyze
-     * @returns Pain point analysis result
-     */
-    async analyze(content: string): Promise<PainPointAnalysis> {
+    async analyze(content: string): Promise<PainPointAnalysis | null> {
         try {
-            const response = await openaiClient.chat.completions.create({
-                model: 'openai/gpt-4o-mini', // Fast and cheap for initial filtering
+            const response = await openaiClient.chat.send({
+                model: "google/gemini-2.5-flash-lite",
                 messages: [
                     {
                         role: 'user',
                         content: PAIN_POINT_PROMPT + '\n\n' + content,
                     },
                 ],
-                response_format: { type: 'json_object' },
-                temperature: 0.3,
+                responseFormat: { type: 'json_object' },
+                temperature: 0.0,
             });
 
-            const result = JSON.parse(response.choices[0].message.content || '{}');
-            return result as PainPointAnalysis;
+            const responseContent = response.choices[0].message.content;
+            const result = JSON.parse((typeof responseContent === 'string' ? responseContent : '') || '{}') as PainPointAnalysis;
+
+            if (result.relevance && result.relevance > ACCEPTABLE_RELEVANCE_THRESHOLD) {
+                return result;
+            }
+            return null;
         } catch (error) {
             console.error('[PainPointAnalyzer] Error:', error);
-            return { hasPainPoint: false };
+            return null;
         }
-    }
-
-    /**
-     * Check if a pain point is significant enough to process
-     * @param analysis The pain point analysis
-     * @param threshold Minimum relevance score (default: 5)
-     * @returns True if pain point is significant
-     */
-    isSignificant(analysis: PainPointAnalysis, threshold: number = 5): boolean {
-        return analysis.hasPainPoint && (analysis.relevance || 0) >= threshold;
     }
 }
