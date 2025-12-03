@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Idea Radar
+
+SaaS idea discovery platform that analyzes pain points from various sources and generates actionable business ideas.
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables:**
+   Create a `.env` file in the root directory with the following variables:
+   ```bash
+   # Supabase
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+   # Clerk Authentication
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
+   CLERK_SECRET_KEY=your_clerk_secret
+
+   # OpenRouter AI
+   OPENROUTER_API_KEY=your_openrouter_key
+
+   # Resend Email
+   RESEND_API_KEY=your_resend_key
+   RESEND_FROM_EMAIL=noreply@yourdomain.com
+
+   # Application
+   NEXT_PUBLIC_WEB_APP_URL=http://localhost:3000/
+
+   # Cron Job Security
+   CRON_SECRET=your_secret_token
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open [http://localhost:3000](http://localhost:3000)**
+
+## Running the Idea Generation Job
+
+The idea generation job can be triggered manually via API:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+curl -X POST http://localhost:3000/api/jobs/ideas/generate \
+  -H "Authorization: Bearer YOUR_CRON_SECRET"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Important:** 
+- Replace `YOUR_CRON_SECRET` with the value of `CRON_SECRET` from your `.env` file
+- This endpoint is protected and requires the Bearer token for authentication
+- In production, this is typically triggered by Vercel Cron
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The job will:
+1. Fetch content from configured sources (Reddit, etc.)
+2. Analyze pain points using AI
+3. Generate or improve SaaS ideas
+4. Save results to the database
+5. Send email digests to subscribers
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Future development ideas
+- Integrate other sources. Like Twitter, Hacker News, etc.
+  - Another interesting source are Apps marketplaces and review platforms (Like G2). Where people might share their pain points and solutions directly
+- Combine volueme data (like google trends) with detailed explanation of the problem (like youtube video subscriptions). It will allow improve estimate & potential to generate more sophisticated ideas/insides
+- Potentialy give ability for customer to personalize their idea generation by allowing define custome themes and sources
+    - themes usually too general and might overlap. Maybe custoemr would like to track something in between
+    - People ususully have thair heros or resources they trust. Maybe we can use that to generate ideas. Like site RSS, youtube channel, twitter account, etc.
+- Allow customer to run related market/compatitors research to fill the gaps in undestanding
+    - potential monetization point
+- For the idea define potential castomer portrait and integrate with outreach tools/agencies
+    - based on customer portrait platform can show amount of potential customers thay can reach right the way
+    - potential monetization point
 
-To learn more about Next.js, take a look at the following resources:
+## Used prompts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### UI generation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
