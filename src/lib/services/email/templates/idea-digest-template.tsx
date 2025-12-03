@@ -22,7 +22,7 @@ interface IdeaDigestTemplateProps {
  */
 export function generateIdeaDigestEmail(props: IdeaDigestTemplateProps): string {
     const { subscriberEmail, subscriptionId, ideaGroups, webAppUrl } = props;
-    const unsubscribeUrl = `${webAppUrl}api/unsubscribe?id=${subscriptionId}`;
+    const unsubscribeUrl = `${webAppUrl}/api/unsubscribe?id=${subscriptionId}`;
 
     return `
 <!DOCTYPE html>
@@ -73,7 +73,7 @@ export function generateIdeaDigestEmail(props: IdeaDigestTemplateProps): string 
                                         <p style="margin: 0 0 20px; color: #374151; font-size: 16px; font-weight: 600;">
                                             Ready to explore more?
                                         </p>
-                                        <a href="${webAppUrl}" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);">
+                                        <a href="${webAppUrl}/ideas" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);">
                                             Visit Idea Radar
                                         </a>
                                     </td>

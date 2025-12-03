@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
                     <p>
                         If you change your mind, you can always subscribe again from our website.
                     </p>
-                    <a href="${process.env.NEXT_PUBLIC_WEB_APP_URL || '/'}">Back to Idea Radar</a>
+                    <a href="https://${process.env.NEXT_PUBLIC_WEB_APP_URL}">Back to Idea Radar</a>
                 </div>
             </body>
             </html>
