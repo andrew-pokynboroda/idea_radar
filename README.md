@@ -56,7 +56,7 @@ curl -X POST http://localhost:3000/api/jobs/ideas/generate \
 **Important:** 
 - Replace `YOUR_CRON_SECRET` with the value of `CRON_SECRET` from your `.env` file
 - This endpoint is protected and requires the Bearer token for authentication
-- In production, this is typically triggered by Vercel Cron
+- In production, this is triggered by Vercel Cron shedule
 
 The job will:
 1. Fetch content from configured sources (Reddit, etc.)
@@ -68,18 +68,15 @@ The job will:
 
 ## Future development ideas
 - Integrate other sources. Like Twitter, Hacker News, etc.
-  - Another interesting source are Apps marketplaces and review platforms (Like G2). Where people might share their pain points and solutions directly
-- Combine volueme data (like google trends) with detailed explanation of the problem (like youtube video subscriptions). It will allow improve estimate & potential to generate more sophisticated ideas/insides
+  - Another interesting sources are Apps marketplaces and review platforms (Like G2). Where people might share their pain points and solutions directly
+- Combine volume data (like google trends) with detailed explanation of the problem (like youtube video transcriptions). It will allow improve estimate & potential to generate more sophisticated ideas/insides
 - Potentialy give ability for customer to personalize their idea generation by allowing define custome themes and sources
     - themes usually too general and might overlap. Maybe custoemr would like to track something in between
     - People ususully have thair heros or resources they trust. Maybe we can use that to generate ideas. Like site RSS, youtube channel, twitter account, etc.
 - Allow customer to run related market/compatitors research to fill the gaps in undestanding
     - potential monetization point
 - For the idea define potential castomer portrait and integrate with outreach tools/agencies
-    - based on customer portrait platform can show amount of potential customers thay can reach right the way
+    - based on customer portrait platform can show amount of potential customers thay can reach right away
     - potential monetization point
 
-## Used prompts
-
-### UI generation
 
