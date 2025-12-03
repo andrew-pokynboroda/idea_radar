@@ -2,6 +2,8 @@
 
 SaaS idea discovery platform that analyzes pain points from various sources and generates actionable business ideas.
 
+Deployed on Vercel: https://idea-radar-lyart.vercel.app/
+
 ## Getting Started
 
 1. **Install dependencies:**
